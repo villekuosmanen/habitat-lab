@@ -10,7 +10,7 @@ from collections import OrderedDict
 from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 from habitat.core.dataset import Episode
 from habitat.core.registry import registry

@@ -18,10 +18,10 @@ from typing import (
     cast,
 )
 
-import gym
+import gymnasium as gym
 import numba
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 from habitat.config import read_write
 from habitat.core.dataset import BaseEpisode, Dataset, Episode, EpisodeIterator

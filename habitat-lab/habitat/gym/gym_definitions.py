@@ -7,8 +7,8 @@
 import os.path as osp
 from typing import TYPE_CHECKING, Any, List, Optional
 
-import gym
-from gym.envs.registration import register, registry
+import gymnasium as gym
+from gymnasium.envs.registration import register, registry
 
 from habitat import get_config, read_write
 from habitat.config.default import _HABITAT_CFG_DIR, register_configs
@@ -94,7 +94,7 @@ def _make_habitat_gym_env(
 
 
 def _try_register(id_name, entry_point, kwargs):
-    if id_name in registry.env_specs:
+    if id_name in registry:
         return
     register(
         id_name,
@@ -103,7 +103,7 @@ def _try_register(id_name, entry_point, kwargs):
     )
 
 
-if "Habitat-v0" not in registry.env_specs:
+if "Habitat-v0" not in registry:
     register_configs()
     # Generic supporting general configs
     _try_register(
@@ -122,6 +122,8 @@ if "Habitat-v0" not in registry.env_specs:
     gym_template_handle = "Habitat%s-v0"
     render_gym_template_handle = "HabitatRender%s-v0"
 
+    print("________")
+
     for gym_name, file_name in PRE_REGISTERED_GYM_TASKS.items():
         # Register this environment name with this config
         full_path = osp.join(_HABITAT_CFG_DIR, file_name)
@@ -130,10 +132,12 @@ if "Habitat-v0" not in registry.env_specs:
             entry_point="habitat.gym.gym_definitions:_make_habitat_gym_env",
             kwargs={"cfg_file_path": full_path},
         )
-        # print(gym_template_handle % gym_name)
+        print(gym_template_handle % gym_name)
 
         _try_register(
             id_name=render_gym_template_handle % gym_name,
             entry_point="habitat.gym.gym_definitions:_make_habitat_gym_env",
             kwargs={"cfg_file_path": full_path, "use_render_mode": True},
         )
+
+        print(render_gym_template_handle % gym_name)

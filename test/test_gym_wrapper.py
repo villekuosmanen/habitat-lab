@@ -6,10 +6,10 @@
 
 import importlib
 import sys
+from unittest import mock
 
-import gym
-import gym.spaces as spaces
-import mock
+import gymnasium as gym
+import gymnasium.spaces as spaces
 import numpy as np
 import pytest
 

@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Dict, Iterable, List, Optional, Tuple, Union
 
 import numpy as np
 import torch
-from gym import spaces
+from gymnasium import spaces
 from torch import nn
 
 from habitat.core.logging import logger

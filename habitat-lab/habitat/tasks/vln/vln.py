@@ -11,7 +11,7 @@
 from typing import Any, Dict, List, Optional
 
 import attr
-from gym import spaces
+from gymnasium import spaces
 
 from habitat.core.registry import registry
 from habitat.core.simulator import Observations, Sensor

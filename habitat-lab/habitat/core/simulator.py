@@ -20,7 +20,7 @@ from typing import (
 import attr
 import numpy as np
 import quaternion
-from gym import Space, spaces
+from gymnasium import Space, spaces
 
 from habitat.core.dataset import Episode
 

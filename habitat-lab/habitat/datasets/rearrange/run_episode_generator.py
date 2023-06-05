@@ -35,7 +35,7 @@ class SceneSamplerParamsConfig:
 @dataclass
 class SceneSamplerConfig:
     type: str = "single"
-    params: SceneSamplerParamsConfig = SceneSamplerParamsConfig()
+    params: SceneSamplerParamsConfig = field(default_factory=SceneSamplerParamsConfig)
     comment: str = ""
 
 
@@ -111,7 +111,7 @@ class RearrangeEpisodeGeneratorConfig:
     # NOTE: "single" scene sampler asserts that only a single scene contains the "scene" name substring
     # NOTE: "subset" scene sampler allows sampling from multiple scene sets by name
     # TODO: This default is a bit ugly, but we must use ConfigNodes and define all options to directly nest dicts with yacs|yaml...
-    scene_sampler: SceneSamplerConfig = SceneSamplerConfig()
+    scene_sampler: SceneSamplerConfig = field(default_factory=SceneSamplerConfig)
 
     # Specify name of receptacle and maximum # of placemenets in
     # receptacle. To allow only two objects in the chair, specify:

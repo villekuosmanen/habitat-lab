@@ -26,7 +26,7 @@ from typing import (
 import attr
 import numpy as np
 import torch
-from gym import spaces
+from gymnasium import spaces
 from PIL import Image
 from torch import Size, Tensor
 from torch import nn as nn

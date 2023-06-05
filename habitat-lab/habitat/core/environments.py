@@ -13,7 +13,7 @@ in habitat. Customized environments should be registered using
 import importlib
 from typing import TYPE_CHECKING, Dict, Optional, Tuple, Type, Union
 
-import gym
+import gymnasium as gym
 import numpy as np
 
 import habitat

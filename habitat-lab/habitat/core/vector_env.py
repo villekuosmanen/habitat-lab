@@ -26,9 +26,9 @@ from typing import (
 )
 
 import attr
-import gym
+import gymnasium as gym
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 import habitat
 from habitat.core.env import Env, RLEnv

@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Any
 
 import numpy as np
 import pyrobot
-from gym import Space, spaces
+from gymnasium import Space, spaces
 
 from habitat.core.registry import registry
 from habitat.core.simulator import (

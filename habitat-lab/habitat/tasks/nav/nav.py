@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, Any, List, Optional, Sequence, Tuple, Union
 import attr
 import numpy as np
 import quaternion
-from gym import spaces
+from gymnasium import spaces
 
 from habitat.config import read_write
 from habitat.config.default import get_agent_config

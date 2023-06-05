@@ -6,7 +6,7 @@
 
 from os import path as osp
 
-import gym
+import gymnasium as gym
 import magnum as mn
 import numpy as np
 import pytest

@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Tuple
 
-import gym.spaces as spaces
+import gymnasium.spaces as spaces
 import torch
 import torch.nn as nn
 

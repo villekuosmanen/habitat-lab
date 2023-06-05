@@ -70,7 +70,7 @@ if "COLAB_GPU" in os.environ:
 
 import os
 
-import gym
+import gymnasium as gym
 import numpy as np
 from hydra.core.config_store import ConfigStore
 

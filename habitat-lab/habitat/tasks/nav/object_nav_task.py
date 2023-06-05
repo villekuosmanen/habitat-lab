@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Any, List, Optional
 
 import attr
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 from habitat.core.logging import logger
 from habitat.core.registry import registry

@@ -39,7 +39,7 @@ import sys
 
 import git
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 # %matplotlib inline
 from matplotlib import pyplot as plt

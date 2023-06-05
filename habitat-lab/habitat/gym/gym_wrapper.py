@@ -8,9 +8,9 @@ from collections import OrderedDict
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union, cast
 
-import gym
+import gymnasium as gym
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 from habitat.core.simulator import Observations
 from habitat.core.spaces import EmptySpace

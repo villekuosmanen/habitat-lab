@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Union
 
 import torch
-from gym import spaces
+from gymnasium import spaces
 from torch import nn as nn
 
 from habitat.tasks.nav.nav import (

@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Callable, Dict, Optional
 
-import gym.spaces as spaces
+import gymnasium.spaces as spaces
 import numpy as np
 import torch
 import torch.nn as nn

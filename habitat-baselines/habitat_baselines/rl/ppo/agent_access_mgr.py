@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Tuple
 
-import gym.spaces as spaces
+import gymnasium.spaces as spaces
 
 from habitat_baselines.common.env_spec import EnvironmentSpec
 from habitat_baselines.common.storage import Storage

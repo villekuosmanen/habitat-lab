@@ -11,7 +11,7 @@ from typing import List
 
 import numpy as np
 import pytest
-from gym import Wrapper
+from gymnasium import Wrapper
 
 import habitat
 from habitat.config.default import get_agent_config, get_config
