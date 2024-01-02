@@ -1009,6 +1009,9 @@ class NavToObjSuccessMeasurementConfig(MeasurementConfig):
 class OVMMNavToObjRewardMeasurementConfig(NavToObjRewardMeasurementConfig):
     type: str = "OVMMNavToObjReward"
 
+@dataclass
+class OVMMNavToObjExploreRewardMeasurementConfig(NavToObjRewardMeasurementConfig):
+    type: str = "OVMMNavToObjExploreReward"
 
 @dataclass
 class OVMMDistToPickGoalMeasurementConfig(DistToGoalMeasurementConfig):
@@ -1725,7 +1728,7 @@ class HabitatSimV0Config(HabitatBaseConfig):
     leave_context_with_background_renderer: bool = False
     enable_gfx_replay_save: bool = False
     # hbao_visual_effects: bool = False
-    pbr_image_based_lighting: bool = True
+    # pbr_image_based_lighting: bool = True
 
 
 @dataclass
@@ -2759,6 +2762,12 @@ cs.store(
     group="habitat/task/measurements",
     name="ovmm_nav_to_obj_reward",
     node=OVMMNavToObjRewardMeasurementConfig,
+)
+cs.store(
+    package="habitat.task.measurements.ovmm_nav_to_obj_explore_reward",
+    group="habitat/task/measurements",
+    name="ovmm_nav_to_obj_explore_reward",
+    node=OVMMNavToObjExploreRewardMeasurementConfig,
 )
 cs.store(
     package="habitat.task.measurements.dist_to_pick_goal",
