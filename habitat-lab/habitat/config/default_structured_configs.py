@@ -678,6 +678,15 @@ class GoalRecepSegmentationSensorConfig(ObjectSegmentationSensorConfig):
 class CameraPoseSensorConfig(LabSensorConfig):
     type: str = "CameraPoseSensor"
 
+@dataclass
+class LeftWristCameraPoseSensorConfig(LabSensorConfig):
+    uuid: str = "left_wrist_camera_pose"
+    type: str = "LeftWristCameraPoseSensor"
+
+@dataclass
+class RightWristCameraPoseSensorConfig(LabSensorConfig):
+    uuid: str = "right_wrist_camera_pose"
+    type: str = "RightWristCameraPoseSensor"
 
 @dataclass
 class ReceptacleSegmentationSensorConfig(LabSensorConfig):
@@ -1633,6 +1642,32 @@ class HeadDepthSensorConfig(HabitatSimDepthSensorConfig):
 
 
 @dataclass
+class LeftWristRGBSensorConfig(HabitatSimRGBSensorConfig):
+    uuid: str = "left_wrist_rgb"
+    width: int = 256
+    height: int = 256
+
+
+@dataclass
+class LeftWristDepthSensorConfig(HabitatSimDepthSensorConfig):
+    uuid: str = "left_wrist_depth"
+    width: int = 256
+    height: int = 256
+
+@dataclass
+class RightWristRGBSensorConfig(HabitatSimRGBSensorConfig):
+    uuid: str = "right_wrist_rgb"
+    width: int = 256
+    height: int = 256
+
+
+@dataclass
+class RightWristDepthSensorConfig(HabitatSimDepthSensorConfig):
+    uuid: str = "right_wrist_depth"
+    width: int = 256
+    height: int = 256
+
+@dataclass
 class ArmPanopticSensorConfig(HabitatSimSemanticSensorConfig):
     uuid: str = "articulated_agent_arm_panoptic"
     width: int = 256
@@ -2149,6 +2184,30 @@ cs.store(
 
 cs.store(
     group="habitat/simulator/sim_sensors",
+    name="left_wrist_depth_sensor",
+    node=LeftWristDepthSensorConfig,
+)
+
+cs.store(
+    group="habitat/simulator/sim_sensors",
+    name="left_wrist_rgb_sensor",
+    node=LeftWristRGBSensorConfig,
+)
+
+cs.store(
+    group="habitat/simulator/sim_sensors",
+    name="right_wrist_depth_sensor",
+    node=RightWristDepthSensorConfig,
+)
+
+cs.store(
+    group="habitat/simulator/sim_sensors",
+    name="right_wrist_rgb_sensor",
+    node=RightWristRGBSensorConfig,
+)
+
+cs.store(
+    group="habitat/simulator/sim_sensors",
     name="head_panoptic_sensor",
     node=HeadPanopticSensorConfig,
 )
@@ -2382,6 +2441,18 @@ cs.store(
     group="habitat/task/lab_sensors",
     name="camera_pose_sensor",
     node=CameraPoseSensorConfig,
+)
+cs.store(
+    package="habitat.task.lab_sensors.left_wrist_camera_pose_sensor",
+    group="habitat/task/lab_sensors",
+    name="left_wrist_camera_pose_sensor",
+    node=LeftWristCameraPoseSensorConfig,
+)
+cs.store(
+    package="habitat.task.lab_sensors.right_wrist_camera_pose_sensor",
+    group="habitat/task/lab_sensors",
+    name="right_wrist_camera_pose_sensor",
+    node=RightWristCameraPoseSensorConfig,
 )
 cs.store(
     package="habitat.task.lab_sensors.receptacle_segmentation_sensor",

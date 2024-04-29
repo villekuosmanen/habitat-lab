@@ -50,6 +50,8 @@ defaults:
     - robot_start_gps_sensor
     - robot_start_compass_sensor
     - camera_pose_sensor
+    - left_wrist_camera_pose_sensor
+    - right_wrist_camera_pose_sensor
     - end_effector_sensor
     - relative_resting_pos_sensor
     - is_holding_sensor
@@ -70,24 +72,14 @@ base_angle_noise: 0.2618 # 15 degrees
 receptacle_categories_file: data/objects/hssd-receptacles.csv
 actions:
   arm_action:
-    type: "ArmAction"
-    arm_controller: "ArmRelPosKinematicReducedActionStretch"
-    grip_controller: "MagicGraspAction"
-    arm_joint_mask: [1,0,0,0,1,1,1,1,1,1]
-    arm_joint_dimensionality: 7
-    grasp_thresh_dist: 0.8 # for oracle snap
-    disable_grip: False
-    max_delta_pos: 6.28 # The range of joints are:  [ 0., 0.,  0.,  0.,  0., -1.75, -1.57, -3.14, -3.9, -1.53] -> [0.13, 0.13, 0.13, 0.13, 1.1 , 4., 0.56, 3.14, 1.5 , 0.79], so maximum delta is 6.28
-    ee_ctrl_lim: 0.015
-    gaze_distance_range: [0.1, 3.0]
-    center_cone_angle_threshold: 90.0
-    center_cone_vector: [0.0, 1.0, 0.0]
-    oracle_snap: True
+    arm_controller: "ArmRelPosAction" # used for controlling arms specifically
+    arm_joint_dimensionality: 32
+    grip_controller: MagicGraspAction # used for controlling whether the object is grasped or not
   base_velocity:
     type: "BaseWaypointTeleportAction"
     navmesh_offset: [[0.0, 0.0]]
     max_displacement_along_axis: 1.0
-    max_turn_degrees: 180.0
+    max_turn_degrees: 45.0
     allow_lateral_movement: True
     allow_simultaneous_turn: True
 measurements:

@@ -75,6 +75,8 @@ class Manipulator(ArticulatedAgentInterface):
 
     def reconfigure(self) -> None:
         """Instantiates the robot the scene. Loads the URDF, sets initial state of parameters, joints, motors, etc..."""
+
+        
         # TODO: The current implementation requires users to define all the components of the robot in a single URDF.
         # The future will support loading multiple URDF files.
         if self.sim_obj is None or not self.sim_obj.is_alive:
@@ -84,6 +86,10 @@ class Manipulator(ArticulatedAgentInterface):
                 fixed_base=self._fixed_base,
                 maintain_link_order=self._maintain_link_order,
             )
+            
+            names = self.get_link_and_joint_names()
+            print(names)
+            
         if self._limit_robo_joints:
             # automatic joint limit clamping after each call to sim.step_physics()
             self.sim_obj.auto_clamp_joint_limits = True
@@ -152,10 +158,16 @@ class Manipulator(ArticulatedAgentInterface):
 
                     if cam_info.attached_link_id == -1:
                         link_trans = self.sim_obj.transformation
+                        # x = self.sim_obj.get_link_ids()
+                        # names = {d: self.sim_obj.get_link_joint_name(d) for d in x}
+                        # print(names)
                     else:
                         link_trans = self.sim_obj.get_link_scene_node(
                             cam_info.attached_link_id
                         ).transformation
+                        x = self.sim_obj.get_link_ids()
+                        names = {d: self.sim_obj.get_link_joint_name(d) for d in x}
+                        print(names)
 
                     if cam_info.cam_look_at_pos == mn.Vector3(0, 0, 0):
                         pos = cam_info.cam_offset_pos
