@@ -7,14 +7,16 @@ from habitat.articulated_agents.mobile_manipulator import (
     MobileManipulatorParams,
 )
 
-# TODO: This is simply copied over from Stretch Robot.
-# Needs to be updated for ALOHA robot.
 class AlohaRobot(MobileManipulator):
     cls_uuid: str = "aloha_robot"
 
     def _get_base_params(self):
         # these refer to joints, seemingly sorted based on child anf joint name but quite unclear what order they are really in.
-        arm_joints = [17, 18, 19, 20, 21, 22, 23, 24,     27, 28, 29, 30, 31, 32, 33, 34,       37, 38, 39, 40, 41, 42, 43, 44,       46, 47, 48, 49, 50, 51, 52, 53]
+        left_front = [17, 18, 19, 20, 21, 22, 23, 24]
+        right_front = [27, 28, 29, 30, 31, 32, 33, 34]
+        left_rear = [37, 38, 39, 40, 41, 42, 43, 44]
+        right_rear = [46, 47, 48, 49, 50, 51, 52, 53]
+        arm_joints = left_front + right_front + left_rear + right_rear
         
         return MobileManipulatorParams(
             arm_joints=arm_joints,

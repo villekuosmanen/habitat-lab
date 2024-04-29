@@ -158,16 +158,13 @@ class Manipulator(ArticulatedAgentInterface):
 
                     if cam_info.attached_link_id == -1:
                         link_trans = self.sim_obj.transformation
-                        # x = self.sim_obj.get_link_ids()
-                        # names = {d: self.sim_obj.get_link_joint_name(d) for d in x}
-                        # print(names)
                     else:
                         link_trans = self.sim_obj.get_link_scene_node(
                             cam_info.attached_link_id
                         ).transformation
-                        x = self.sim_obj.get_link_ids()
-                        names = {d: self.sim_obj.get_link_joint_name(d) for d in x}
-                        print(names)
+                        # x = self.sim_obj.get_link_ids()
+                        # names = {d: self.sim_obj.get_link_joint_name(d) for d in x}
+                        # print(names)
 
                     if cam_info.cam_look_at_pos == mn.Vector3(0, 0, 0):
                         pos = cam_info.cam_offset_pos
