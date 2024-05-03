@@ -37,13 +37,13 @@ class AlohaRobot(MobileManipulator):
                     # @ mn.Matrix4.rotation_z(mn.Deg(-90)),
                 ),
                 "left_wrist": ArticulatedAgentCameraParams(
-                    cam_offset_pos=mn.Vector3(0.0, 0.0, 0.0),
+                    cam_offset_pos=mn.Vector3(0.05, 0.0, 0.0),
                     attached_link_id=25,
                     relative_transform=mn.Matrix4.rotation_y(mn.Deg(180)),
                     # @ mn.Matrix4.rotation_z(mn.Deg(-90)),
                 ),
                 "right_wrist": ArticulatedAgentCameraParams(
-                    cam_offset_pos=mn.Vector3(0.0, 0.0, 0.0),
+                    cam_offset_pos=mn.Vector3(0.05, 0.0, 0.0),
                     attached_link_id=35,
                     relative_transform=mn.Matrix4.rotation_y(mn.Deg(180)),
                     # @ mn.Matrix4.rotation_z(mn.Deg(-90)),

@@ -275,7 +275,7 @@ class ArmAbsPosKinematicAction(ArticulatedAgentAction):
     def action_space(self):
         return spaces.Box(
             shape=(self._config.arm_joint_dimensionality,),
-            low=0,
+            low=-1,
             high=1,
             dtype=np.float32,
         )

@@ -72,13 +72,15 @@ base_angle_noise: 0.2618 # 15 degrees
 receptacle_categories_file: data/objects/hssd-receptacles.csv
 actions:
   arm_action:
-    arm_controller: "ArmRelPosAction" # used for controlling arms specifically
+    arm_controller: "ArmAbsPosKinematicAction" # used for controlling arms specifically
     arm_joint_dimensionality: 32
+    max_delta_pos: 1
+    arm_joint_mask: [1, 1, 1, 1, 1, 1, 1, 1,     1, 1, 1, 1, 1, 1, 1, 1,        1, 1, 1, 1, 1, 1, 1, 1,      1, 1, 1, 1, 1, 1, 1, 1] # the arm joints that the policy can control
     grip_controller: MagicGraspAction # used for controlling whether the object is grasped or not
   base_velocity:
     type: "BaseWaypointTeleportAction"
     navmesh_offset: [[0.0, 0.0]]
-    max_displacement_along_axis: 1.0
+    max_displacement_along_axis: 6.28
     max_turn_degrees: 45.0
     allow_lateral_movement: True
     allow_simultaneous_turn: True
