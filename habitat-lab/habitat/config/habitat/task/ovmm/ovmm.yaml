@@ -50,6 +50,7 @@ defaults:
     - robot_start_gps_sensor
     - robot_start_compass_sensor
     - camera_pose_sensor
+    - camera_relative_transformation_sensor
     - end_effector_sensor
     - relative_resting_pos_sensor
     - is_holding_sensor
@@ -72,7 +73,7 @@ actions:
   arm_action:
     type: "ArmAction"
     arm_controller: "ArmRelPosKinematicReducedActionStretch"
-    grip_controller: "MagicGraspAction"
+    grip_controller: "GazeGraspAction"
     arm_joint_mask: [1,0,0,0,1,1,1,1,1,1]
     arm_joint_dimensionality: 7
     grasp_thresh_dist: 0.8 # for oracle snap

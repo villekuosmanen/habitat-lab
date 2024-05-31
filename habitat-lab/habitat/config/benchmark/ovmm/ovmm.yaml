@@ -24,6 +24,7 @@ habitat:
       - goal_recep_segmentation
       - object_category
       - camera_pose
+      - camera_relative_transformation
       - object_embedding
       - is_holding
       - relative_resting_position
@@ -69,4 +70,4 @@ habitat:
       enable_physics: True
     needs_markers: false
   dataset:
-    split: val
+    split: minival

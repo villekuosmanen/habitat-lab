@@ -689,6 +689,11 @@ class RightWristCameraPoseSensorConfig(LabSensorConfig):
     type: str = "RightWristCameraPoseSensor"
 
 @dataclass
+class CameraRelativeTransformationSensorConfig(LabSensorConfig):
+    uuid: str = "camera_relative_transformation"
+    type: str = "CameraRelativeTransformationSensor"
+
+@dataclass
 class ReceptacleSegmentationSensorConfig(LabSensorConfig):
     type: str = "ReceptacleSegmentationSensor"
     blank_out_prob: float = 0.0
@@ -2453,6 +2458,12 @@ cs.store(
     group="habitat/task/lab_sensors",
     name="right_wrist_camera_pose_sensor",
     node=RightWristCameraPoseSensorConfig,
+)
+cs.store(
+    package="habitat.task.lab_sensors.camera_relative_transformation_sensor",
+    group="habitat/task/lab_sensors",
+    name="camera_relative_transformation_sensor",
+    node=CameraRelativeTransformationSensorConfig,
 )
 cs.store(
     package="habitat.task.lab_sensors.receptacle_segmentation_sensor",
