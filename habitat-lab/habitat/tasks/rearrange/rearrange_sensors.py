@@ -1331,7 +1331,6 @@ class CameraRelativeTransformationSensor(Sensor):
         start_trans = mn.Matrix4(start_trans)
         agent_trans = self._sim._default_agent.scene_node.transformation
 
-        # Earlier attempt:
         # initialise camera transformation at start time
         if not hasattr(self, 'initial_camera_trans'):
             self.robot_initial_trans = self._sim.articulated_agent.base_transformation
@@ -1352,33 +1351,161 @@ class CameraRelativeTransformationSensor(Sensor):
             @ camera_current_offset
         )
 
+        # calculate relative transformation
+        res = (
+            self.initial_camera_trans.inverted()
+            @ current_camera_trans
+        )
+        return res
 
+@registry.register_sensor
+class RightWristCameraRelativeTransformationSensor(Sensor):
+    cls_uuid: str = "right_wrist_camera_relative_transformation"
 
+    def __init__(
+        self,
+        sim,
+        config,
+        task,
+        *args: Any,
+        **kwargs: Any,
+    ):
+        self._sim = sim
+        self._config = config
+        self._task = task
+        super().__init__(config=config)
 
+    def _get_uuid(self, *args: Any, **kwargs: Any) -> str:
+        return self.cls_uuid
 
-        cam_info = self._sim.articulated_agent.params.cameras["head"]
+    def _get_sensor_type(self, *args: Any, **kwargs: Any):
+        return SensorTypes.TENSOR
+
+    def _get_observation_space(self, *args: Any, **kwargs: Any):
+        return spaces.Box(
+            low=np.finfo(np.float32).min,
+            high=np.finfo(np.float32).max,
+            shape=(4, 4),
+            dtype=np.float32,
+        )
+
+    def get_observation(
+        self,
+        observations,
+        *args: Any,
+        task,
+        **kwargs: Any,
+    ) -> Optional[np.ndarray]:
+        
+        start_trans = np.eye(4)
+        start_pos = task._robot_start_position
+        start_pos[1] = 0
+        start_rot = quaternion.as_rotation_matrix(
+            quaternion_from_coeff(task._robot_start_rotation)
+        )
+        start_trans[:3, :3] = start_rot
+        start_trans[:3, 3] = start_pos
+        start_trans = mn.Matrix4(start_trans)
+        agent_trans = self._sim._default_agent.scene_node.transformation
+
+        # Earlier attempt:
         # initialise camera transformation at start time
-        # if not hasattr(self, 'initial_camera_trans'):
-        #     self.robot_initial_trans = self._sim.articulated_agent.base_transformation
-        #     self.camera_initial_offset = self._sim.articulated_agent.sim_obj.get_link_scene_node(
-        #         cam_info.attached_link_id
-        #     ).transformation
-        #     self.initial_camera_trans = (
-        #         self.robot_initial_trans.inverted()
-        #         @ self.camera_initial_offset
-        #     )
-        # # calculate current camera transformation
-        # robot_current_trans = self._sim.articulated_agent.base_transformation
-        # camera_current_offset = self._sim.articulated_agent.sim_obj.get_link_scene_node(
-        #     cam_info.attached_link_id
-        # ).transformation
-        # current_camera_trans = (
-        #     robot_current_trans.inverted()
-        #     @ camera_current_offset
-        # )
+        if not hasattr(self, 'initial_camera_trans'):
+            self.robot_initial_trans = self._sim.articulated_agent.base_transformation
+            self.camera_initial_offset = agent_trans @ self._sim._sensors[
+                "right_wrist_depth"
+            ]._sensor_object.node.transformation
+            self.initial_camera_trans = (
+                self.robot_initial_trans.inverted()
+                @ self.camera_initial_offset
+            )
+        # calculate current camera transformation
+        robot_current_trans = self._sim.articulated_agent.base_transformation
+        camera_current_offset = agent_trans @ self._sim._sensors[
+                "right_wrist_depth"
+            ]._sensor_object.node.transformation
+        current_camera_trans = (
+            robot_current_trans.inverted()
+            @ camera_current_offset
+        )
 
-        robot_translation = self.robot_initial_trans.inverted() @ robot_current_trans
-        camera_translation = self.camera_initial_offset.inverted() @ camera_current_offset
+        # calculate relative transformation
+        res = (
+            self.initial_camera_trans.inverted()
+            @ current_camera_trans
+        )
+        return res
+    
+@registry.register_sensor
+class LeftWristCameraRelativeTransformationSensor(Sensor):
+    cls_uuid: str = "left_wrist_camera_relative_transformation"
+
+    def __init__(
+        self,
+        sim,
+        config,
+        task,
+        *args: Any,
+        **kwargs: Any,
+    ):
+        self._sim = sim
+        self._config = config
+        self._task = task
+        super().__init__(config=config)
+
+    def _get_uuid(self, *args: Any, **kwargs: Any) -> str:
+        return self.cls_uuid
+
+    def _get_sensor_type(self, *args: Any, **kwargs: Any):
+        return SensorTypes.TENSOR
+
+    def _get_observation_space(self, *args: Any, **kwargs: Any):
+        return spaces.Box(
+            low=np.finfo(np.float32).min,
+            high=np.finfo(np.float32).max,
+            shape=(4, 4),
+            dtype=np.float32,
+        )
+
+    def get_observation(
+        self,
+        observations,
+        *args: Any,
+        task,
+        **kwargs: Any,
+    ) -> Optional[np.ndarray]:
+        
+        start_trans = np.eye(4)
+        start_pos = task._robot_start_position
+        start_pos[1] = 0
+        start_rot = quaternion.as_rotation_matrix(
+            quaternion_from_coeff(task._robot_start_rotation)
+        )
+        start_trans[:3, :3] = start_rot
+        start_trans[:3, 3] = start_pos
+        start_trans = mn.Matrix4(start_trans)
+        agent_trans = self._sim._default_agent.scene_node.transformation
+
+        # Earlier attempt:
+        # initialise camera transformation at start time
+        if not hasattr(self, 'initial_camera_trans'):
+            self.robot_initial_trans = self._sim.articulated_agent.base_transformation
+            self.camera_initial_offset = agent_trans @ self._sim._sensors[
+                "left_wrist_depth"
+            ]._sensor_object.node.transformation
+            self.initial_camera_trans = (
+                self.robot_initial_trans.inverted()
+                @ self.camera_initial_offset
+            )
+        # calculate current camera transformation
+        robot_current_trans = self._sim.articulated_agent.base_transformation
+        camera_current_offset = agent_trans @ self._sim._sensors[
+                "left_wrist_depth"
+            ]._sensor_object.node.transformation
+        current_camera_trans = (
+            robot_current_trans.inverted()
+            @ camera_current_offset
+        )
 
         # calculate relative transformation
         res = (
