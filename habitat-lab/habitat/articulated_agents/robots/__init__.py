@@ -8,6 +8,7 @@ from habitat.articulated_agents.robots.fetch_robot import (
     FetchRobot,
     FetchRobotNoWheels,
 )
+from habitat.articulated_agents.robots.aloha import AlohaRobot
 from habitat.articulated_agents.robots.franka_robot import FrankaRobot
 from habitat.articulated_agents.robots.spot_robot import SpotRobot
 from habitat.articulated_agents.robots.stretch_robot import StretchRobot

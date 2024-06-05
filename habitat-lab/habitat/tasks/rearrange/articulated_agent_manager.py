@@ -15,6 +15,7 @@ from habitat.articulated_agents.mobile_manipulator import MobileManipulator
 
 # flake8: noqa
 from habitat.articulated_agents.robots import (
+    AlohaRobot,
     FetchRobot,
     FetchRobotNoWheels,
     SpotRobot,
